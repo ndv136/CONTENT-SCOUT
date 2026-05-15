@@ -1,10 +1,16 @@
-# LIVING DOCUMENTATION: CONTENT SCOUT MAILER v1.0
+# ⛔ LIVING DOCUMENTATION: CONTENT SCOUT MAILER v1.0 — DEPRECATED
 
-> **Status:** PRODUCTION  
-> **Last Updated:** 2026-05-15  
-> **Version:** v1.0 (5-Tier Trend Architecture)  
+> **Status:** ⛔ DEPRECATED — Workflow DISABLED, capabilities ported to AI Radar v4.0  
+> **Deprecated Date:** 2026-05-15  
+> **Successor:** `EMAIL-ALERT-` / AI Radar Mailer v4.0 (T7 + T8)  
 > **Git Repo:** `github.com/ndv136/CONTENT-SCOUT.git`  
-> **Schedule:** Daily 5:00 AM VN (22:00 UTC)
+> **Schedule:** ~~Daily 5:00 AM VN (22:00 UTC)~~ DISABLED
+>
+> ### Re-activation Instructions
+> 1. Edit `.github/workflows/daily_scout.yml`
+> 2. Uncomment the `schedule` block
+> 3. Remove `if: false` from the job
+> 4. Push to main → cron re-registers automatically
 
 ---
 

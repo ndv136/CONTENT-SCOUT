@@ -1,13 +1,18 @@
-name: Daily Content Scout Mailer
+# ⛔ DISABLED — All capabilities ported to EMAIL-ALERT- (AI Radar v4.0)
+# Re-enable: uncomment schedule block and remove 'if: false' from job
+# See: EMAIL-ALERT-/LIVINGDOC_ai_radar_mailer.md → PHẦN 8: CONSOLIDATION RECORD
+
+name: Daily Content Scout Mailer [DISABLED]
 
 on:
-  schedule:
-    # 22:00 UTC = 5:00 AM Vietnam
-    - cron: '0 22 * * *'
+  # schedule:
+  #   # 22:00 UTC = 5:00 AM Vietnam
+  #   - cron: '0 22 * * *'
   workflow_dispatch:
 
 jobs:
   run-scout:
+    if: false  # ⛔ DISABLED — Ported to AI Radar v4.0 (T7 + T8)
     runs-on: ubuntu-latest
     
     steps:
