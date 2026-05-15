@@ -33,7 +33,7 @@ class ContentScoutMailer:
     # TANG 1: XU HUONG TIM KIEM TOAN CAU
     # ==========================================
     def get_tier1_global_trends(self) -> str:
-        print("T1: Xu huong tim kiem toan cau...")
+        print("🔍 Tầng 1: Xu hướng tìm kiếm toàn cầu...")
 
         raw_text = ""
 
@@ -69,7 +69,7 @@ class ContentScoutMailer:
             if count >= 5: break
 
         if not raw_text.strip():
-            return "<p>Khong co xu huong noi bat nao hom nay.</p>"
+            return "<p>Không có xu hướng nổi bật nào hôm nay.</p>"
 
         prompt = f"""
         Du lieu THO ve XU HUONG TIM KIEM TOAN CAU tu Google Trends va tin tuc 24h qua:
@@ -94,13 +94,13 @@ class ContentScoutMailer:
         </div>
         """
         try: return self.model.generate_content(prompt).text.replace('```html', '').replace('```', '').strip()
-        except: return "<p>Loi xu ly LLM Tang 1</p>"
+        except: return "<p>Lỗi xử lý LLM Tầng 1</p>"
 
     # ==========================================
     # TANG 2: VIRAL VIDEO & SOCIAL MEDIA
     # ==========================================
     def get_tier2_viral_video(self) -> str:
-        print("T2: Viral Video & Social Media...")
+        print("🔍 Tầng 2: Viral Video & Social Media...")
 
         raw_text = ""
         seen = set()
@@ -138,7 +138,7 @@ class ContentScoutMailer:
             if count >= 4: break
 
         if not raw_text.strip():
-            return "<p>Khong co tin viral noi bat.</p>"
+            return "<p>Không có tin viral nổi bật.</p>"
 
         prompt = f"""
         Du lieu ve VIDEO VIRAL va XU HUONG SOCIAL MEDIA 48h qua:
@@ -164,13 +164,13 @@ class ContentScoutMailer:
         </div>
         """
         try: return self.model.generate_content(prompt).text.replace('```html', '').replace('```', '').strip()
-        except: return "<p>Loi xu ly LLM Tang 2</p>"
+        except: return "<p>Lỗi xử lý LLM Tầng 2</p>"
 
     # ==========================================
     # TANG 3: CONTENT STRATEGY & CREATOR ECONOMY
     # ==========================================
     def get_tier3_content_strategy(self) -> str:
-        print("T3: Content Strategy & Creator Economy...")
+        print("🔍 Tầng 3: Content Strategy & Creator Economy...")
 
         raw_text = ""
         seen = set()
@@ -201,7 +201,7 @@ class ContentScoutMailer:
             if count >= 5: break
 
         if not raw_text.strip():
-            return "<p>Khong co chien luoc noi dung moi.</p>"
+            return "<p>Không có chiến lược nội dung mới.</p>"
 
         prompt = f"""
         Du lieu ve CHIEN LUOC NOI DUNG & CREATOR ECONOMY tu Reddit va tin tuc:
@@ -230,13 +230,13 @@ class ContentScoutMailer:
         </div>
         """
         try: return self.model.generate_content(prompt).text.replace('```html', '').replace('```', '').strip()
-        except: return "<p>Loi xu ly LLM Tang 3</p>"
+        except: return "<p>Lỗi xử lý LLM Tầng 3</p>"
 
     # ==========================================
     # TANG 4: XU HUONG VIET NAM
     # ==========================================
     def get_tier4_vietnam_trends(self) -> str:
-        print("T4: Xu huong Viet Nam...")
+        print("🔍 Tầng 4: Xu hướng Việt Nam...")
 
         raw_text = ""
         seen = set()
@@ -273,7 +273,7 @@ class ContentScoutMailer:
             if count >= 5: break
 
         if not raw_text.strip():
-            return "<p>Khong co xu huong VN noi bat.</p>"
+            return "<p>Không có xu hướng VN nổi bật.</p>"
 
         prompt = f"""
         Du lieu ve XU HUONG va TIN TUC HOT tai VIET NAM hom nay:
@@ -300,13 +300,13 @@ class ContentScoutMailer:
         </div>
         """
         try: return self.model.generate_content(prompt).text.replace('```html', '').replace('```', '').strip()
-        except: return "<p>Loi xu ly LLM Tang 4</p>"
+        except: return "<p>Lỗi xử lý LLM Tầng 4</p>"
 
     # ==========================================
     # TANG 5: GOI Y NOI DUNG AI (Synthesis)
     # ==========================================
     def get_tier5_content_ideas(self, t1: str, t2: str, t3: str, t4: str) -> str:
-        print("T5: Goi y noi dung AI...")
+        print("🔍 Tầng 5: Gợi ý nội dung AI...")
 
         # Extract text from HTML for context (strip tags roughly)
         import re
@@ -353,13 +353,13 @@ class ContentScoutMailer:
         </div>
         """
         try: return self.model.generate_content(prompt).text.replace('```html', '').replace('```', '').strip()
-        except: return "<p>Loi xu ly LLM Tang 5</p>"
+        except: return "<p>Lỗi xử lý LLM Tầng 5</p>"
 
     # ==========================================
     # DONG GOI EMAIL
     # ==========================================
     def send_email_report(self, t1: str, t2: str, t3: str, t4: str, t5: str):
-        print("Dong goi va gui Email...")
+        print("✉️ Đang đóng gói và gửi Email...")
         sender_email = self.config['sender_email']
         receiver_email = self.config['receiver_email']
         app_password = self.config['gmail_app_password']
@@ -371,42 +371,42 @@ class ContentScoutMailer:
         msg['From'] = sender_email
         msg['To'] = receivers_str
         today_str = datetime.now().strftime("%d/%m/%Y")
-        msg['Subject'] = f"[Content Scout 5:00 AM] Xu Huong & Y Tuong Noi Dung - {today_str}"
+        msg['Subject'] = f"[Content Scout 5:00 AM] Xu Hướng & Ý Tưởng Nội Dung - {today_str}"
 
         html_body = f"""
         <html>
             <body style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1C2833; line-height: 1.6; max-width: 800px; margin: auto;">
                 <div style="text-align: center; margin-bottom: 30px;">
                     <h1 style="color: #2C3E50; margin-bottom: 5px;">CONTENT SCOUT</h1>
-                    <p style="color: #7F8C8D; font-size: 13px; margin-top: 0;">{today_str} | Xu huong & Y tuong noi dung moi nhat</p>
+                    <p style="color: #7F8C8D; font-size: 13px; margin-top: 0;">{today_str} | Xu hướng & Ý tưởng nội dung mới nhất</p>
                 </div>
 
-                <h2 style="color: #E74C3C; border-bottom: 1px solid #FDEDEC; padding-bottom: 5px; font-size: 18px;">TANG 1: XU HUONG TIM KIEM TOAN CAU</h2>
+                <h2 style="color: #E74C3C; border-bottom: 1px solid #FDEDEC; padding-bottom: 5px; font-size: 18px;">TẦNG 1: XU HƯỚNG TÌM KIẾM TOÀN CẦU</h2>
                 <p style="font-size: 12px; color: #7F8C8D; margin-top: 2px;">Google Trends US/Global + Tin viral 24h</p>
                 <div style="padding: 10px 0;">
                     {t1}
                 </div>
 
-                <h2 style="color: #8E44AD; border-bottom: 1px solid #F5EEF8; padding-bottom: 5px; font-size: 18px; margin-top: 30px;">TANG 2: VIRAL VIDEO & SOCIAL MEDIA</h2>
+                <h2 style="color: #8E44AD; border-bottom: 1px solid #F5EEF8; padding-bottom: 5px; font-size: 18px; margin-top: 30px;">TẦNG 2: VIRAL VIDEO & SOCIAL MEDIA</h2>
                 <p style="font-size: 12px; color: #7F8C8D; margin-top: 2px;">YouTube, TikTok, Instagram, Threads — 48h qua</p>
                 <div style="padding: 10px 0;">
                     {t2}
                 </div>
 
-                <h2 style="color: #E67E22; border-bottom: 1px solid #FEF5E7; padding-bottom: 5px; font-size: 18px; margin-top: 30px;">TANG 3: CONTENT STRATEGY & CREATOR ECONOMY</h2>
-                <p style="font-size: 12px; color: #7F8C8D; margin-top: 2px;">Reddit + Tin tuc content marketing</p>
+                <h2 style="color: #E67E22; border-bottom: 1px solid #FEF5E7; padding-bottom: 5px; font-size: 18px; margin-top: 30px;">TẦNG 3: CONTENT STRATEGY & CREATOR ECONOMY</h2>
+                <p style="font-size: 12px; color: #7F8C8D; margin-top: 2px;">Reddit + Tin tức content marketing</p>
                 <div style="padding: 10px 0;">
                     {t3}
                 </div>
 
-                <h2 style="color: #1ABC9C; border-bottom: 1px solid #E8F8F5; padding-bottom: 5px; font-size: 18px; margin-top: 30px;">TANG 4: XU HUONG VIET NAM</h2>
-                <p style="font-size: 12px; color: #7F8C8D; margin-top: 2px;">Google Trends VN + VnExpress + Tuoi Tre</p>
+                <h2 style="color: #1ABC9C; border-bottom: 1px solid #E8F8F5; padding-bottom: 5px; font-size: 18px; margin-top: 30px;">TẦNG 4: XU HƯỚNG VIỆT NAM</h2>
+                <p style="font-size: 12px; color: #7F8C8D; margin-top: 2px;">Google Trends VN + VnExpress + Tuổi Trẻ</p>
                 <div style="padding: 10px 0;">
                     {t4}
                 </div>
 
-                <h2 style="color: #3498DB; border-bottom: 1px solid #EBF5FB; padding-bottom: 5px; font-size: 18px; margin-top: 30px;">TANG 5: GOI Y NOI DUNG AI</h2>
-                <p style="font-size: 12px; color: #7F8C8D; margin-top: 2px;">5 y tuong noi dung tu AI — bat tay lam ngay hom nay</p>
+                <h2 style="color: #3498DB; border-bottom: 1px solid #EBF5FB; padding-bottom: 5px; font-size: 18px; margin-top: 30px;">TẦNG 5: GỢI Ý NỘI DUNG AI</h2>
+                <p style="font-size: 12px; color: #7F8C8D; margin-top: 2px;">5 ý tưởng nội dung từ AI — bắt tay làm ngay hôm nay</p>
                 <div style="padding: 10px 0;">
                     {t5}
                 </div>
@@ -426,20 +426,20 @@ class ContentScoutMailer:
             server.login(sender_email, app_password)
             server.send_message(msg)
             server.quit()
-            print("DA GUI EMAIL THANH CONG!")
+            print("✅ ĐÃ GỬI EMAIL THÀNH CÔNG!")
         except Exception as e:
             print(f"Loi gui email: {str(e)}")
             sys.exit(1)
 
     def run_daily_scout(self):
-        print("=== BAT DAU CHAY CONTENT SCOUT 5 TANG ===")
+        print("=== BẮT ĐẦU CHẠY CONTENT SCOUT 5 TẦNG ===")
         t1 = self.get_tier1_global_trends()
         t2 = self.get_tier2_viral_video()
         t3 = self.get_tier3_content_strategy()
         t4 = self.get_tier4_vietnam_trends()
         t5 = self.get_tier5_content_ideas(t1, t2, t3, t4)
         self.send_email_report(t1, t2, t3, t4, t5)
-        print("=== HOAN TAT ===")
+        print("=== HOÀN TẤT ===")
 
 if __name__ == "__main__":
     CONFIG = {
@@ -453,5 +453,5 @@ if __name__ == "__main__":
         scout = ContentScoutMailer(CONFIG)
         scout.run_daily_scout()
     else:
-        print("LOI: Khong doc duoc secrets! Kiem tra GitHub Repository Secrets.")
+        print("⚠️ LỖI: Không đọc được secrets! Kiểm tra GitHub Repository Secrets.")
         sys.exit(1)
